@@ -515,10 +515,6 @@ static void CleverTapReachabilityHandler(SCNetworkReachabilityRef target, SCNetw
 - (NSString*)radio {
 #if !CLEVERTAP_NO_REACHABILITY_SUPPORT
     if (!_radio) {
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(_updateRadio)
-                                                     name:CTRadioAccessTechnologyDidChangeNotification
-                                                   object:nil];
         [self _updateRadio];
     }
 #endif
