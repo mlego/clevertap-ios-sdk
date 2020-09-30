@@ -6,9 +6,7 @@
 #import <SDWebImage/SDAnimatedImageView.h>
 #endif
 
-@interface CTInAppNotification() {
-    
-}
+@interface CTInAppNotification()
 
 @property (nonatomic, readwrite) NSString *Id;
 @property (nonatomic, readwrite) NSString *campaignId;
@@ -58,6 +56,8 @@
 
 @property (nonatomic, readwrite) NSString *error;
 
+@property (nonatomic, readwrite) NSNumber *wzrk_ttl;
+
 @end
 
 @implementation CTInAppNotification: NSObject
@@ -88,6 +88,7 @@
             if (self.inAppType == CTInAppTypeUnknown) {
                 self.error = @"Unknown InApp Type";
             }
+            self.wzrk_ttl = jsonObject[@"wzrk_ttl"];
         } @catch (NSException *e) {
             self.error = e.debugDescription;
         }

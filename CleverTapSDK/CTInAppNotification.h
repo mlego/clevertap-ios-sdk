@@ -52,6 +52,8 @@
 @property (nonatomic, copy, readonly) NSDictionary *customExtras;
 @property (nonatomic, copy, readwrite) NSDictionary *actionExtras;
 
+@property (nonatomic, readonly) NSNumber *wzrk_ttl;
+
 - (instancetype)init __unavailable;
 - (instancetype)initWithJSON:(NSDictionary*)json;
 
