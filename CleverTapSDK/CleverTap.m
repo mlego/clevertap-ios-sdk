@@ -1787,6 +1787,16 @@ static NSMutableArray<CTInAppDisplayViewController*> *pendingNotificationControl
         return;
     }
     
+    if (notification.wzrk_ttl != nil) {
+        if (notification.wzrk_ttl.integerValue > 0) {
+            NSTimeInterval now = [[NSDate date] timeIntervalSince1970];
+            if (now >= notification.wzrk_ttl.integerValue){
+                CleverTapLogStaticInternal(@"Inapp notification message expired! wzrk_ttl: %@ %@", notification.wzrk_ttl, notification.jsonDescription);
+                return;;
+            }
+        }
+    }
+    
     CTInAppDisplayViewController *controller;
     NSString *errorString = nil;
     CleverTapJSInterface *jsInterface = nil;
