@@ -140,12 +140,16 @@ static void CleverTapReachabilityHandler(SCNetworkReachabilityRef target, SCNetw
 }
 
 + (NSString *)getPlatformName {
+    NSString *platform = nil;
     size_t size;
     sysctlbyname("hw.machine", NULL, &size, NULL, 0);
-    char *machine = malloc(size);
+    char machine[size];
     sysctlbyname("hw.machine", machine, &size, NULL, 0);
-    NSString *platform = [NSString stringWithUTF8String:machine];
-    free(machine);
+    if (size) {
+        platform = @(machine);
+    } else {
+        CleverTapLogStaticDebug(@"Failed to fetch hw.machine from sysctl.");
+    }
     return platform;
 }
 
