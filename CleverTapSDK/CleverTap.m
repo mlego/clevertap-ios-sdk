@@ -303,6 +303,7 @@ static NSMutableArray<CTInAppDisplayViewController*> *pendingNotificationControl
 }
 
 + (void)onDidFinishLaunchingNotification:(NSNotification *)notification {
+    NSLog(@"CleverTap onDidFinishLaunchingNotification");
     if (initialAppEnteredForegroundTime <= 0) {
         initialAppEnteredForegroundTime = (int) [[[NSDate alloc] init] timeIntervalSince1970];
     }
