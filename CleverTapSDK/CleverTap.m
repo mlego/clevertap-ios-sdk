@@ -312,7 +312,14 @@ static NSMutableArray<CTInAppDisplayViewController*> *pendingNotificationControl
         [[self sharedInstance] notifyApplicationLaunchedWithOptions:launchOptions];
         return;
     }
-    for (CleverTap *instance in [_instances allValues]) {
+    NSMutableDictionary *prunedDictionary = [NSMutableDictionary dictionary];
+    for (NSString * key in [_instances allKeys])
+    {
+        if (![[_instances objectForKey:key] isKindOfClass:[NSNull class]])
+            [prunedDictionary setObject:[_instances objectForKey:key] forKey:key];
+    }
+    
+    for (CleverTap *instance in [prunedDictionary allValues]) {
         [instance notifyApplicationLaunchedWithOptions:launchOptions];
     }
 }
